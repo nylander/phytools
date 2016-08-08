@@ -119,6 +119,8 @@ makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",
 		ii<-which(obj$trees[[1]]$tip.label==obj$assoc[i,1])
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])
 		y<-c((ii-1)/(Ntip(obj$trees[[1]])-1),(jj-1)/(Ntip(obj$trees[[2]])-1))
+        theY <- paste("y:", y)
+        print(theY,"\n")
 		if(link.type=="straight") lines(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 		else if(link.type=="curved") drawCurve(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 	}

@@ -114,13 +114,18 @@ phylogram<-function(tree,part=1,direction="rightwards",fsize=1,ftype="i",lwd=1,.
 
 ## plot links between tip taxa according to assoc
 ## written by Liam J. Revell 2015, 2016
-makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1){ ###JN
+makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=FALSE){ ###JN
 	for(i in 1:nrow(obj$assoc)){
 		ii<-which(obj$trees[[1]]$tip.label==obj$assoc[i,1])
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])
 		y<-c((ii-1)/(Ntip(obj$trees[[1]])-1),(jj-1)/(Ntip(obj$trees[[2]])-1))
-        theY <- paste("y:", y)
-        print(theY)
+        if(isTRUE(link.hl)){
+            if(diff(range(y))){
+                link.col<-"white"
+            }else{
+                link.col<-link.col
+            }
+        }
 		if(link.type=="straight") lines(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 		else if(link.type=="curved") drawCurve(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 	}
@@ -146,6 +151,8 @@ plot.cophylo<-function(x,...){
 	else link.tly<-"dashed" ###JN
 	if(hasArg(link.lwd)) link.lwd<-list(...)$link.lwd ###JN
 	else link.lwd<-1 ###JN
+	if(hasArg(link.hl)) link.hl<-list(...)$link.hl ###JN
+	else link.hl<-FALSE ###JN
 	obj<-list(...)
 	par(mar=mar)
 	plot.window(xlim=xlim,ylim=ylim)

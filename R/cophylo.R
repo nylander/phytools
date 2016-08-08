@@ -114,18 +114,18 @@ phylogram<-function(tree,part=1,direction="rightwards",fsize=1,ftype="i",lwd=1,.
 
 ## plot links between tip taxa according to assoc
 ## written by Liam J. Revell 2015, 2016
-makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=FALSE){ ###JN
+makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=TRUE){ ###JN
 	for(i in 1:nrow(obj$assoc)){
 		ii<-which(obj$trees[[1]]$tip.label==obj$assoc[i,1])
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])
 		y<-c((ii-1)/(Ntip(obj$trees[[1]])-1),(jj-1)/(Ntip(obj$trees[[2]])-1))
-        if(isTRUE(link.hl)){
-            if(diff(range(y))){
-                link.col<-"white"
-            }else{
-                link.col<-link.col
-            }
-        }
+        if(isTRUE(link.hl)){ ###JN
+            if(diff(range(y))){ ###JN
+                link.col<-"white" ###JN
+            }else{ ###JN
+                link.col<-link.col ###JN
+            } ###JN
+        } ###JN
 		if(link.type=="straight") lines(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 		else if(link.type=="curved") drawCurve(x,y,col=link.col,lty=link.lty,lwd=link.lwd) ###JN
 	}
@@ -169,7 +169,7 @@ plot.cophylo<-function(x,...){
 	x2<-do.call("phylogram",c(list(tree=x$trees[[2]],part=0.4,
 		direction="leftwards"),rightArgs))
 	right<-get("last_plot.phylo",envir=.PlotPhyloEnv)
-	if(!is.null(x$assoc)) makelinks(x,c(x1,x2),link.type,link.col,link.lty,link.lwd) ####JN
+	if(!is.null(x$assoc)) makelinks(x,c(x1,x2),link.type,link.col,link.lty,link.lwd,link.hl) ####JN
 	else cat("No associations provided.\n")
 	if(any(scale.bar>0)) add.scalebar(x,scale.bar,sb.fsize)
 	assign("last_plot.cophylo",list(left=left,right=right),envir=.PlotPhyloEnv)

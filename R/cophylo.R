@@ -249,13 +249,11 @@ tiplabels.cophylo<-function(...,which=c("left","right")){
 ## modified from https://stackoverflow.com/questions/32046889/connecting-two-points-with-curved-lines-s-ish-curve-in-r
 
 drawCurve<-function(x,y,...){
-    if(hasArg(link.col)) link.col<-list(...)$link.col ###JN
-	else link.col<-"black" ###JN
 	x1<-x[1]
 	x2<-x[2]
 	y1<-y[1]
 	y2<-y[2]
 	curve(plogis(x,scale=0.01,loc=(x1+x2)/2)*(y2-y1)+y1, 
-		x1,x2,add=TRUE,col=link.col,...) ###JN
+		x1,x2,add=TRUE,...)
 }
 

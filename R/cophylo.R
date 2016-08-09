@@ -114,7 +114,7 @@ phylogram<-function(tree,part=1,direction="rightwards",fsize=1,ftype="i",lwd=1,.
 
 ## plot links between tip taxa according to assoc
 ## written by Liam J. Revell 2015, 2016
-makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=TRUE){ ###JN
+makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=FALSE){ ###JN
 	for(i in 1:nrow(obj$assoc)){
 		ii<-which(obj$trees[[1]]$tip.label==obj$assoc[i,1])
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])

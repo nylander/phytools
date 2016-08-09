@@ -27,6 +27,7 @@ export(threshBayes, threshDIC, threshState, tiplabels.cophylo, tipRotate, to.mat
 export(untangle)
 export(vcvPhylo)
 export(write.simmap, writeAncestors, writeNexus)
+export(makelinks)
 
 S3method(plot, densityMap)
 S3method(plot, contMap)

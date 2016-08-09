@@ -121,8 +121,7 @@ makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])
 		y<-c((ii-1)/(Ntip(obj$trees[[1]])-1),(jj-1)/(Ntip(obj$trees[[2]])-1))
         if(isTRUE(link.hl)){ ###JN
-            dump(y, file = "/home/nylander/tmp/y.txt")
-            save(y, file = "/home/nylander/tmp/y.r")
+            assign("mY", y, envir = .GlobalEnv) ###JN
             if(diff(range(y))){ ###JN 08/08/2016 04:25:55 PM TODO: make the correct test (not working now with link.hl)
                 link.col<-"white" ###JN
             }else{ ###JN

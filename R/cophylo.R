@@ -123,7 +123,7 @@ makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",
         if(isTRUE(link.hl)){ ###JN
             assign("mY", y, envir = .GlobalEnv) ###JN
             if(diff(range(y))){ ###JN 08/08/2016 04:25:55 PM TODO: make the correct test (not working now with link.hl)
-                link.col<-"white" ###JN
+                link.col<-"blue" ###JN
             }else{ ###JN
                 link.col<-link.col ###JN
             } ###JN

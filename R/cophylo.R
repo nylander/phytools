@@ -114,16 +114,17 @@ phylogram<-function(tree,part=1,direction="rightwards",fsize=1,ftype="i",lwd=1,.
 
 ## plot links between tip taxa according to assoc
 ## written by Liam J. Revell 2015, 2016
-makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=TRUE){ ###JN
-    cat("running makelinks\n")###JN
+#makelinks<-function(obj,x,link.type="curved",link.col="black",link.lty="dashed",link.lwd=1,link.hl=TRUE){ ###JN
+makelinks<-function(obj,x,link.type,link.col,link.lty,link.lwd,link.hl){ ###JN
+    assign("myX", x, envir = .GlobalEnv) ###JN
+    lcol<-link.col
 	for(i in 1:nrow(obj$assoc)){
 		ii<-which(obj$trees[[1]]$tip.label==obj$assoc[i,1])
 		jj<-which(obj$trees[[2]]$tip.label==obj$assoc[i,2])
 		y<-c((ii-1)/(Ntip(obj$trees[[1]])-1),(jj-1)/(Ntip(obj$trees[[2]])-1))
         if(isTRUE(link.hl)){ ###JN
-            assign("mY", y, envir = .GlobalEnv) ###JN
-            if(diff(range(y))){ ###JN 08/08/2016 04:25:55 PM TODO: make the correct test (not working now with link.hl)
-                link.col<-"red" ###JN
+            if(diff(range(y))){ ###JN
+                link.col<-lcol ###JN
             }else{ ###JN
                 link.col<-"white" ###JN
             } ###JN

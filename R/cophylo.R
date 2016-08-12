@@ -151,7 +151,7 @@ plot.cophylo<-function(x,...){
 	if(hasArg(link.col)) link.col<-list(...)$link.col ###JN
 	else link.col<-"black" ###JN
 	if(hasArg(link.lty)) link.lty<-list(...)$link.lty ###JN
-	else link.tly<-"dashed" ###JN
+	else link.lty<-"dashed" ###JN
 	if(hasArg(link.lwd)) link.lwd<-list(...)$link.lwd ###JN
 	else link.lwd<-1 ###JN
 	if(hasArg(link.hl)) link.hl<-list(...)$link.hl ###JN

@@ -169,11 +169,11 @@ plot.cophylo<-function(x,...){
 	} else sb.fsize<-1
 	x1<-do.call("phylogram",c(list(tree=x$trees[[1]],part=0.4),leftArgs))
 	left<-get("last_plot.phylo",envir=.PlotPhyloEnv)
-    nodelabels()###JN
+    #nodelabels()###JN
 	x2<-do.call("phylogram",c(list(tree=x$trees[[2]],part=0.4,
 		direction="leftwards"),rightArgs))
 	right<-get("last_plot.phylo",envir=.PlotPhyloEnv)
-    nodelabels()###JN
+    #nodelabels()###JN
 	if(!is.null(x$assoc)) makelinks(x,c(x1,x2),link.type,link.col,link.lty,link.lwd,link.hl) ####JN
 	else cat("No associations provided.\n")
 	if(any(scale.bar>0)) add.scalebar(x,scale.bar,sb.fsize)
